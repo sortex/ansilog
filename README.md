@@ -6,7 +6,7 @@ executions.
 
 Name             | Description             | Configuration
 ---------------- | ----------------------- | --------------------
-[Kohana] v3.3.1  | The swift PHP framework |
+[Kohana] v3.4.x  | The swift PHP framework |
 [Mustache]       | Logic-less templates    |
 [Minion]         | Command-line PHP tasks  |
 [Backbone.js]    | JS framework            |

@@ -1,0 +1,11 @@
+/.idea/
+/node_modules/
+/vendor/
+/*.lock
+.sass-cache
+/bin/behat
+/bin/raven
+/bin/phpspec
+/apps/*/cache
+/apps/*/logs
+/src/*/media/js/libs

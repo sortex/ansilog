@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Detect the path of this bash script
+# So we could figure out where 'hosts' file is
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+ansible-playbook -i $DIR/../plays/hosts "$@"

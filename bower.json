@@ -1,0 +1,36 @@
+{
+  "name": "ansilog",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sortex/ansilog",
+  "authors": [
+    "Sortex <info@sortex.co.il>"
+  ],
+  "description": "Monitor and manage a history for centralized Ansible playbook executions",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1",
+    "underscore": "~1.6",
+    "backbone": "~1.1",
+    "requirejs": "~2.1",
+    "requirejs-text": "~2.0",
+    "requirejs-plugins": "~1.0",
+    "marionette": "~2.2",
+    "marionette.backbone.syphon": "~0.5",
+    "bootstrap": "~3.3",
+    "moment": "~2.8",
+    "mustache": "~0.8",
+    "speakingurl": "~0.17",
+    "less.js": "~2.1",
+    "JSON-js": "3d7767b6b1f3da363c625ff54e63bbf20e9e83ac",
+    "jquery-cookie": "~1.4",
+    "jquery.transit": "~0.9",
+    "jquery-ajaxQueue": "gnarf/jquery-ajaxQueue#0.1.1",
+    "jquery-chosen": "https://github.com/harvesthq/chosen/releases/download/v1.1.0/chosen_v1.1.0.zip",
+    "jquery.pagination": "sortex/amdjs-jquery.pagination#master",
+    "jquery.event": "sortex/amdjs-jquery.event#master",
+    "gridex": "sortex/gridex#master",
+    "stache": "sortex/stache#master",
+    "toastr": "sortex/toastr#master",
+    "slickgrid": "sortex/amdjs-SlickGrid#master"
+  }
+}
