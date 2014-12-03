@@ -1,0 +1,25 @@
+---
+
+- name: Setup - Bootstrapping machines
+  gather_facts: no
+  hosts: servers
+  sudo: yes
+  roles:
+    - base/archlinux
+    - base/common
+    - utils/base
+    - utils/gitolite
+    - utils/nginx
+    - utils/cgit
+    - utils/postgresql
+    - utils/php
+    - utils/syncthing
+    - utils/filebin
+
+#- name: Setup - App
+#  hosts: vagrants
+#  sudo: yes
+#  roles:
+#    - app
+#    - deploy/clean
+#    - deploy/update

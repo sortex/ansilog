@@ -1,0 +1,51 @@
+{{< cms/site/layout }}
+
+	{{$ grid }}
+		<div id="grid">
+			<div class="container-fluid">
+				<header class="row">
+				{{$ header }}
+					<div class="col-md-2">
+						<a class="logo" href="{{ url_base }}">
+							<span>Header {{ site.title }}</span>
+						</a>
+					</div>
+					<div class="col-md-10">
+						Nav
+						{{> widget.menu.main }}
+					</div>
+				{{/ header }}
+				</header>
+				<section class="row">
+					<aside class="col-md-2">
+					{{$ sidebar}}
+						Sidebar
+					{{/ sidebar}}
+					</aside>
+					<section class="col-md-10">
+					{{$ content_wrap }}
+						<div class="row">
+							<h1 class="col-md-8">{{ page.title }}</h1>
+							<div class="col-md-4">{{ page.excerpt }}</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">{{> content}}</div>
+						</div>
+					{{/ content_wrap }}
+					</section>
+				</section>
+			</div>
+			<footer class="container-fluid">
+				{{$ footer }}
+					<div class="row">
+						<div class="col-md-12">
+							{{> widget.menu.small }}
+							Footer
+						</div>
+					</div>
+				{{/ footer }}
+			</footer>
+		</div>
+	{{/ grid }}
+
+{{/ cms/site/layout }}

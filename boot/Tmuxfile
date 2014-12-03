@@ -1,0 +1,26 @@
+#
+# Ansilog
+# tmux workspace
+
+path=/srv/http/cms
+cd $path
+
+tmux new-session -d -s $name -n local
+
+# Horizontal PostgreSQL
+tmux split-window -t $name:1.1 -h -p 48 "psql -U postgres -h localhost -d ansilog"
+tmux send-keys -t $name:1.2 "SET search_path = public,system,log; \\dn \\dt" C-m
+
+# Vertical ranger (split PostgreSQL's pane)
+tmux split-window -t $name:1.2 -v -p 30 "ranger"
+
+# Vertical grunt (split main pane)
+tmux split-window -t $name:1.1 -v -p 20 "grunt watch"
+
+# Horizontal git log (split grunt pane)
+tmux split-window -t $name:1.4 -h -p 70 "watch -c -n 3 git -c color.diff=always tree"
+
+tmux send-keys -t $name:1.1 "clear && head README* && ll apps && ll" C-m
+
+tmux select-pane -t $name:1.1
+tmux attach-session -t $name

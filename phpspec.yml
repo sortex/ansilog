@@ -1,0 +1,6 @@
+formatter.name: pretty
+suites:
+  ansilog:
+    namespace: Ansilog
+    src_path:  src/Ansilog/classes
+    spec_path: srv

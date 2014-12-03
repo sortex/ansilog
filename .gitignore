@@ -6,6 +6,7 @@
 /bin/behat
 /bin/raven
 /bin/phpspec
+/build/
 /apps/*/cache
 /apps/*/logs
 /src/*/media/js/libs

@@ -2,14 +2,12 @@
 	"name": "sortex/ansilog",
 	"description": "Monitor and manage a history for centralized Ansible playbook executions",
 	"authors": [
-		{
-			"name": "Sortex",
-			"email": "info@sortex.co.il"
-		}
+		{ "name": "Sortex", "email": "info@sortex.co.il" }
 	],
 	"config": {
 		"bin-dir": "bin"
 	},
+	"minimum-stability": "dev",
 	"require": {
 			"php": ">=5.5.0",
 			"kohana/core": "3.4.*",
@@ -32,10 +30,23 @@
 		"kohana/userguide": "3.4.*",
 		"phpspec/phpspec": "2.1.*@dev"
 	},
-	"minimum-stability": "dev",
 	"extra": {
 		"installer-paths": {
 			"vendor/{$vendor}/{$name}": ["type:kohana-module"]
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Ansilog\\": "src/Ansilog/classes/"
+		},
+		"psr-0": {
+			"": [
+				"src/Kohana/classes/",
+				"vendor/kohana/core/classes/",
+				"vendor/kohana/cache/classes/",
+				"vendor/kohana/database/classes/",
+				"vendor/kohana/minion/classes/"
+			]
 		}
 	}
 }

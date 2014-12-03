@@ -1,0 +1,15 @@
+{
+	"libs": [
+		"browser",
+		"jquery"
+	],
+	"loadEagerly": [
+	],
+	"plugins": {
+		"requirejs": {
+			"baseURL": "./src/Ansilog/media/js",
+			"paths": {
+			}
+		}
+	}
+}
