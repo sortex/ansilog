@@ -44,7 +44,7 @@ Kohana::modules([
 	'theme'   => DOCROOT.'src/Themes/_default',
 	'kohana'  => DOCROOT.'src/Kohana',          // Kohana extensions
 	'minion'  => MODPATH.'minion',              // Kohana extensions
-	'core'    => MODPATH.'core',                // Kohana/core
+	'ko-core' => MODPATH.'core',                // Kohana/core
 ]);
 Kohana::init_modules();
 
