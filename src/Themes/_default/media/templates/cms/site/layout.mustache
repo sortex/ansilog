@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ page.language }}" class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ page.language }}" class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ page.language }}" class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="{{ page.language }}"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>{{ title }}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="{{ config.view_port }}" />
+	<meta name="generator" content="{{ version }}" />
+	<meta name="description" content="{{ meta.description }}" />
+	<meta name="keywords" content="{{ meta.keywords }}" />
+	<meta name="authour" content="{{ config.meta_author }}" />
+	<meta name="subject" content="{{ config.meta_subject }}" />
+	<link rel="canonical" href="{{ page.canonical_url }}" />
+	<link rel="shortcut icon" href="{{ site.favicon }}" />
+	<link rel="apple-touch-icon" href="{{ site.apple_touch_icon }}" />
+	{{> environment }}
+	{{$ stylesheets }}{{/ stylesheets }}
+</head>
+<body>
+	{{$ grid }}{{/ grid }}
+	{{$ scripts }}{{/ scripts }}
+</body>
+</html>

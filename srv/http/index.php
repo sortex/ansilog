@@ -62,6 +62,9 @@ if ($langs = $app_config->get('languages') && ! empty($langs))
 	I18n::lang($langs[0]);
 }
 
+// Set the base URL
+Kohana::$base_url = rtrim($app_config['base_uri'], '/').'/';
+
 // Init cache
 // -------------------------------------------------------------
 Kohana::$cache = Cache::instance();
