@@ -7,17 +7,21 @@
 	"config": {
 		"bin-dir": "bin"
 	},
-	"minimum-stability": "dev",
+	"extra": {
+		"installer-paths": {
+			"vendor/{$vendor}/{$name}": ["type:kohana-module"]
+		}
+	},
 	"require": {
 			"php": ">=5.5.0",
-			"kohana/core": "3.4.*",
-			"kohana/auth": "3.4.*",
-			"kohana/cache": "3.4.*",
-			"kohana/codebench": "3.4.*",
-			"kohana/database": "3.4.*",
-			"kohana/image": "3.4.*",
-			"kohana/minion": "3.4.*",
-			"kohana/orm": "3.4.*",
+			"kohana/core": "3.4.*@dev",
+			"kohana/auth": "3.4.*@dev",
+			"kohana/cache": "3.4.*@dev",
+			"kohana/codebench": "3.4.*@dev",
+			"kohana/database": "3.4.*@dev",
+			"kohana/image": "3.4.*@dev",
+			"kohana/minion": "3.4.*@dev",
+			"kohana/orm": "3.4.*@dev",
 
 			"pimple/pimple": "3.0.*",
 			"mustache/mustache": "2.7.*",
@@ -27,13 +31,8 @@
 			"raven/raven": "0.10.*"
 		},
 	"require-dev": {
-		"kohana/userguide": "3.4.*",
+		"kohana/userguide": "3.4.*@dev",
 		"phpspec/phpspec": "2.1.*@dev"
-	},
-	"extra": {
-		"installer-paths": {
-			"vendor/{$vendor}/{$name}": ["type:kohana-module"]
-		}
 	},
 	"autoload": {
 		"psr-4": {
