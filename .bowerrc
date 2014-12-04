@@ -1,4 +1,4 @@
 {
-    "directory": "src/Ansilog/media/js/libs",
+    "directory": "src/Ansilog/media/vendor",
     "strict-ssl": false
 }

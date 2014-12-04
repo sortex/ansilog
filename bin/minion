@@ -1,23 +1,4 @@
 #!/usr/bin/env php
 <?php
 
-// Extract app name from parameters if there's no environment variable set
-if (empty($_SERVER['APP_NAME']))
-{
-	if (empty($_SERVER['argv'][1]))
-	{
-		echo "Must specify app name as first parameter\n";
-		exit(1);
-	}
-
-	// Extract app name from first parameter
-	$_SERVER['APP_NAME'] = $_SERVER['argv'][1];
-
-	// Remove name from parameters, normalizes integer keys
-	array_splice($_SERVER['argv'], 1, 1);
-
-	// Decrease the argument count
-	--$_SERVER['argc'];
-}
-
-include __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'index.php';
+include __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'srv'.DIRECTORY_SEPARATOR.'cli'.DIRECTORY_SEPARATOR.'index.php';

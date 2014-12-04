@@ -29,14 +29,7 @@ module.exports = function(grunt) {
 		// Compiles admin's LESS stylesheet
 //		grunt.task.run(['less_admin']);
 
-		// Iterate through all apps and compile their LESS stylesheet
-		var apps = grunt.file.expand({ cwd: 'srv/http', filter: 'isDirectory' }, '*');
-		apps.forEach(function (appName) {
-			if (grunt.file.isDir('srv/http/'+appName+'/media/less')) {
-				grunt.log.writeln('Found site: '+appName);
-				grunt.task.run('less:'+appName+':'+environment);
-			}
-		});
+		grunt.task.run('less:'+environment);
 	});
 
 	/**
@@ -81,15 +74,15 @@ module.exports = function(grunt) {
 	/**
 	 * LESS: Compile sites' stylesheets
 	 * Copies an App's compiled CSS into:
-	 *  - Development: srv/http/../media/dev/css
-	 *  - Others: srv/http/../media/css
+	 *  - Development: srv/http/media/dev/css
+	 *  - Others: app/media/media/css
 	 */
-	grunt.registerTask('less', 'Compiles LESS styles', function(appName, environment) {
+	grunt.registerTask('less', 'Compiles LESS styles', function(environment) {
 		environment = environment || 'development';
-		var src = 'var/cache/'+appName+'/media/less/site',
+		var src = 'var/cache/build/media/less/site',
 			dests = {
-				development: 'srv/media/'+appName+'/media/dev/css/site',
-				production: 'srv/http/'+appName+'/media/css/site'
+				development: 'srv/http/media/dev/css/site',
+				production: 'app/media/css/site'
 			},
 			dest = dests[environment],
 			opts = environment == 'development' ? '' : '-x';
@@ -99,7 +92,7 @@ module.exports = function(grunt) {
 		}
 
 		var cmds = [
-			'bin/minion '+appName+' media:build --pattern=site',
+			'bin/minion media:build --pattern=site',
 			'$(npm bin)/lessc '+opts+' '+src+'/style.less '+dest+'/style.css'
 		];
 
@@ -227,18 +220,13 @@ module.exports = function(grunt) {
 	 * WATCH_TRIGGER
 	 * Compile styles for a specific App
 	 */
-	grunt.registerTask('watch_trigger', 'Watches and compiles LESS file changes', function(appName) {
-		appName = appName || grunt.option('app');
-		if ( ! appName)
-			throw grunt.util.error(
-				'Missing site name, eg.: `grunt styles:foobar` or `grunt watch --app=foobar`');
-
+	grunt.registerTask('watch_trigger', 'Watches and compiles LESS file changes', function() {
 		// Watch event: Should we compile admin styles instead of app?
 		var filepath = grunt.option('filechanged');
 		if (filepath && filepath.match(/^src\//)) {
 			grunt.task.run('less_admin');
 		} else {
-			grunt.task.run('less:'+appName);
+			grunt.task.run('less');
 		}
 	});
 
@@ -281,11 +269,11 @@ module.exports = function(grunt) {
 					cwd: 'apps/_kala/cache/media/compiled',
 					src: [
 						'**/*.js',
-						'!js/libs/bootstrap/bootstrap.min.js',
-						'!js/libs/jquery/*.js',
-						'!js/libs/jquery.cycle2/*.js',
-						'!js/libs/jquery.touchswipe/*.js',
-						'!js/libs/less/*.js',
+						'!vendor/bootstrap/bootstrap.min.js',
+						'!vendor/jquery/*.js',
+						'!vendor/jquery.cycle2/*.js',
+						'!vendor/jquery.touchswipe/*.js',
+						'!vendor/less/*.js',
 						'!js/vendor/*.min.js'
 					],
 					dest: 'src/core/media',

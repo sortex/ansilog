@@ -7,6 +7,6 @@
 /bin/raven
 /bin/phpspec
 /build/
-/apps/*/cache
-/apps/*/logs
-/src/*/media/js/libs
+/apps/*/cache/
+/apps/*/logs/
+/src/*/media/vendor/

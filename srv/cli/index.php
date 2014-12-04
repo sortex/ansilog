@@ -2,8 +2,11 @@
 if (PHP_SAPI !== 'cli')
 	throw new Exception('Tasks should be run from command-line.');
 
+// Set the document root
+define('DOCROOT', realpath(dirname(__FILE__).'/../..').DIRECTORY_SEPARATOR);
+
 require realpath(__DIR__.'/..').'/environment.php';
-require DOCROOT.'lib/autoload.php';
+require DOCROOT.'vendor/autoload.php';
 require DOCROOT.'src/Kohana/bootstrap.php';
 
 // Prepare configuration stack

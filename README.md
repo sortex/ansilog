@@ -79,6 +79,13 @@ IT Orchestration
 ### Prerequisites
 #### Package Managers
 ### Setup
+```sh
+npm install
+composer install
+bower install
+grunt
+```
+
 #### Cron jobs
 
 ## Upgrade Process
