@@ -20,7 +20,7 @@ trait Ability_Mustache {
 	protected function render($template, $content)
 	{
 		$mustache = new Mustache_Engine([
-			'cache' => DOCROOT.'var/cache/'.APPNAME.'/mustache',
+			'cache' => DOCROOT.'var/cache/mustache',
 			'loader' => new Mustache_Loader_Kohana,
 			'partials_loader' => new Mustache_Loader_Kohana_Alias,
 			'pragmas' => [ Mustache_Engine::PRAGMA_BLOCKS ],
