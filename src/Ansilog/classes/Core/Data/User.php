@@ -4,7 +4,6 @@ namespace Ansilog\Core\Data;
 class User
 {
 	public $id;
-	public $account;
 	public $email;
 	public $username;
 	public $password;
@@ -13,11 +12,6 @@ class User
 	public $last_name;
 	public $phone;
 	public $mobile;
-
-	/**
-		* @var Address $address
-	 */
-	public $address;
 
 	/**
 		* @var Locale $locale
