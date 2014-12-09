@@ -125,4 +125,4 @@ if (Kohana::$environment !== Kohana::DEVELOPMENT)
 }
 
 unset($app_config, $langs);
-
+return $app;
