@@ -47,12 +47,8 @@ abstract class Controller_HTML extends Controller {
 	public function assets()
 	{
 		$escaped = 'window.pass = '.json_encode($this->environment()).';';
-		$assets = '<script type="text/javascript">'.$escaped.'</script>';
+		$assets = '<script type="text/javascript">'.$escaped.'</script>'.PHP_EOL;
 
-		$assets .= HTML::script('vendor/requirejs/require.js', [
-			'data-main' => URL::base().Media::uri('js/config')
-		]);
-		$assets .= HTML::style('css/site/style.css');
 		return $assets;
 	}
 

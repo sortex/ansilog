@@ -11,12 +11,15 @@
 	<meta name="generator" content="{{ version }}" />
 	<meta name="description" content="{{ meta.description }}" />
 	<meta name="keywords" content="{{ meta.keywords }}" />
-	<meta name="authour" content="{{ config.meta_author }}" />
+	<meta name="author" content="{{ config.meta_author }}" />
 	<meta name="subject" content="{{ config.meta_subject }}" />
 	<link rel="canonical" href="{{ page.canonical_url }}" />
 	<link rel="shortcut icon" href="{{ site.favicon }}" />
 	<link rel="apple-touch-icon" href="{{ site.apple_touch_icon }}" />
 	{{> environment }}
+	<script type="text/javascript" src="{{url_media}}vendor/requirejs/require.js"
+		data-main="{{url_media}}js/config"></script>
+	<link type="text/css" rel="stylesheet" href="{{url_media}}css/site/style.css" />
 	{{$ stylesheets }}{{/ stylesheets }}
 </head>
 <body>
