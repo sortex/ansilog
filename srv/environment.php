@@ -12,7 +12,7 @@
 error_reporting(E_ALL | E_STRICT);
 
 // Set the document root
-//define('DOCROOT', realpath(dirname(__FILE__).'/..').DIRECTORY_SEPARATOR);
+define('DOCROOT', realpath(dirname(__FILE__).'/..').DIRECTORY_SEPARATOR);
 
 // Define the environment
 define('ENVNAME', strtolower(getenv('ENV_NAME') ?: 'development'));

@@ -19,8 +19,8 @@ Name             | Description             | Configuration
 [NPM]            | Node package manager    | [package.json](package.json)
 [Bower]          | Package manager         | [bower.json](bower.json), [.bowerrc](.bowerrc)
 [Grunt]          | JS task runner          | [Gruntfile.js](Gruntfile.js)
-[Ansible]        | Automate IT             | [Playbooks](playbooks/)
-[Vagrant]        | Build dev environments  | [Vagrantfile](Vagrantfile)
+[Ansible]        | Automate IT             | [Playbooks](boot/playbooks/)
+[Vagrant]        | Build dev environments  | [Vagrantfile](boot/Vagrantfile)
 [VirtualBox]     | Virtual-machine backend | Used by Vagrant
 
 Drafts
@@ -102,7 +102,6 @@ License
 [NPM]: https://www.npmjs.org/
 [Bower]: http://bower.io/
 [Grunt]: http://gruntjs.com/
-[Git Submodules]: http://git-scm.com/book/en/Git-Tools-Submodules
 [RequireJS]: http://requirejs.org/
 [Backbone.js]: http://backbonejs.org/
 [Marionette.js]: http://marionettejs.com/

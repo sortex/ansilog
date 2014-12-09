@@ -1,6 +1,4 @@
 <?php
-use Ansilog\App;
-
 /**
  * Overriding Kohana's default internal request client
  */
@@ -12,16 +10,16 @@ class Request_Client_Internal extends Request_Client {
 	protected $_previous_environment;
 
 	/**
-	 * @var  App
+	 * @var  mixed
 	 */
 	protected $app;
 
 	/**
 	 * Dependency injected from index.php
 	 *
-	 * @param  App  $app
+	 * @param  mixed  $app
 	 */
-	public function app(App $app)
+	public function app($app)
 	{
 		$this->app = $app;
 	}
