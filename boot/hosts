@@ -1,19 +1,18 @@
 [servers]
-ansilog
+ansilog-prod
 
 [vagrants]
-vm
+ansilog-vm
 
 [production]
-ansilog
+ansilog-prod
 
 [staging]
-ansilog
 
 [dbservers]
-ansilog
-vm
+ansilog-vm
+ansilog-prod
 
 [webservers]
-ansilog
-vm
+ansilog-vm
+ansilog-prod

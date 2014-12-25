@@ -1,0 +1,43 @@
+---
+
+upgrade: false
+fqdn:
+timezone: UTC
+locales:
+ - name: en_US.UTF-8
+   charset: UTF-8
+   default: true
+
+ntp_enable_daemon: true
+
+iptables_accept:
+  - port: 80
+    proto: tcp
+    source: null
+  - port: 42000
+    proto: tcp
+    source: limit
+
+ssh_port: 42000
+ssh_allow_users:
+  - vagrant
+  - sortex
+
+user_groups:
+users:
+
+webserver: apache
+
+apache:
+  version: 2.4
+  port: 80
+  modules:
+    - rewrite
+    - expires
+  group_users:
+    - vagrant
+    - sortex
+
+php:
+  upload_max_filesize: 10M
+  post_max_size: 10M

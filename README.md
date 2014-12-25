@@ -19,6 +19,7 @@ Name             | Description             | Configuration
 [NPM]            | Node package manager    | [package.json](package.json)
 [Bower]          | Package manager         | [bower.json](bower.json), [.bowerrc](.bowerrc)
 [Grunt]          | JS task runner          | [Gruntfile.js](Gruntfile.js)
+[Git Submodules] | 3rd-party repositories  | [.gitmodules](.gitmodules)
 [Ansible]        | Automate IT             | [Playbooks](boot/playbooks/)
 [Vagrant]        | Build dev environments  | [Vagrantfile](boot/Vagrantfile)
 [VirtualBox]     | Virtual-machine backend | Used by Vagrant
@@ -63,21 +64,40 @@ Formation on loading performs a deep-merge of following files in-order:
   - Global routes, [srv/http/index.php](srv/http/index.php#L83)
   - Application routes, [app/routes.php](app/routes.php)
 - `cli`, [Minion] tasks, [srv/cli/index.php](srv/cli/index.php)
-- `static`, [srv/media](srv/media)
+- `assets`, [srv/assets](srv/assets)
 - `spec`, [srv/spec](srv/spec) :question:
 
 IT Orchestration
 ---
 
 ## Automated Install
+First, [install](http://docs.ansible.com/intro_installation.html) Ansible on
+your central machine (usually local computer). This is the machine you'll use to
+run the playbooks on remote servers.
+
 ### Provision Workstation
+Use [Vagrant] and [Ansible] to create a virtual-machine with
+all dependencies and software installed:
+
+	vagrant up
+
 ### Provision Server
 ### Deployment
 
 ## Manual Install
 ### Virtual Hosts
 ### Prerequisites
+- nginx or Apache
+- PHP 5.5.x
+- Node.js
+- Composer, NPM, grunt, bower
+- Git
+
 #### Package Managers
+Install package managers:
+- Composer: `curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer`
+- Bower and Grunt: `npm install -g bower grunt-cli`
+
 ### Setup
 ```sh
 npm install
@@ -89,6 +109,10 @@ grunt
 #### Cron jobs
 
 ## Upgrade Process
+After an upgrade, you need to update git submodules, and compile stylesheets.
+As a developer, you're expected to upgrade after every pull/merge.
+- Updating submodules: `git submodule update --init --recursive`
+- Compiling assets in development: `grunt`
 
 License
 ---

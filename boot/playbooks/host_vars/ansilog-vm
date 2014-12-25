@@ -1,0 +1,5 @@
+---
+
+env:
+  KOHANA_ENV: development
+

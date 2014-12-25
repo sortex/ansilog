@@ -1,0 +1,24 @@
+---
+
+- name: Provision | Bootstrapping machines
+  hosts: all
+  sudo: yes
+  roles:
+    - base/debian
+    - base/common
+
+- name: Provision | Installing web ware and app
+  hosts: webservers
+  sudo: yes
+  roles:
+    - web/apache-debian
+    - web/php-debian
+
+#- name: Provision | Application
+#  hosts: webservers
+#  sudo: yes
+#  roles:
+#    - app
+#    - deploy/clean
+#    - deploy/update
+#    - deploy/build

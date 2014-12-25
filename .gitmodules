@@ -1,0 +1,6 @@
+[submodule "boot/playbooks/roles/base"]
+	path = boot/playbooks/roles/base
+	url = git://github.com/rafi/ansible-base.git
+[submodule "boot/playbooks/roles/web"]
+	path = boot/playbooks/roles/web
+	url = git://github.com/sortex/ansible-web.git

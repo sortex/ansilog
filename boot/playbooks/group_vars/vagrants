@@ -1,0 +1,39 @@
+---
+# ansible_python_interpreter: /usr/bin/python2
+# ansible_ssh_host: 127.0.0.1
+# ansible_ssh_port: 2222
+# ansible_ssh_user: vagrant
+
+# Make sure this is the right path.
+# Usually this is in ~/.vagrant.d
+# Move your vagrant folder to ~/.local/share/vagrant
+# and add this to your bash exports:
+#
+#   export VAGRANT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/vagrant"
+#
+# ansible_ssh_private_key_file: ~/.local/share/vagrant/insecure_private_key
+
+systemd_journal_max_size: 100M
+systemd_vconsole_keymap: us
+systemd_vconsole_font: Lat2-Terminus16
+
+# This is the shared folder vagrant creates in the guest machine
+repo_dir: /vagrant/.git
+work_dir: /vagrant
+
+ssh_port: 22
+ssh_allow_users:
+  - vagrant
+
+ntp_enable_daemon: false
+
+iptables_accept:
+  - port: 80
+    proto: tcp
+    source: limit
+  - port: 22
+    proto: tcp
+    source: limit
+
+user_groups:
+users:
