@@ -21,10 +21,12 @@ Vagrant.configure("2") do |config|
 		override.vm.hostname = "ansilog-vm"
 	end
 
-	config.vm.provision "ansible" do |ansible|
-		ansible.inventory_path = "boot/hosts"
-		ansible.limit = "ansilog-vm"
-		ansible.playbook = "boot/playbooks/provision-debian.yml"
+	config.vm.provision 'ansible' do |ansible|
+		ansible.playbook = 'boot/playbooks/provision-debian.yml'
+		ansible.raw_arguments = [ '--diff' ]
+		ansible.inventory_path = 'boot/hosts'
+		ansible.limit = 'ansilog-vm'
+#		ansible.verbose = 'vvv'
 	end
 
 	# Special settings for VirtualBox machine
