@@ -5,8 +5,8 @@ executions.
 
 Getting started
 ---
-1. Clone project to your workstation:
-`git@github.com:sortex/ansilog.git`
+1. Clone project to your workstation and get into it:
+`git clone git@github.com:sortex/ansilog.git && cd ansilog`
 
 2. Update submodules:
 `git submodule update --init --recursive`
@@ -16,6 +16,9 @@ Getting started
 
 4. Install NFS:
 `sudo apt-get install nfs-kernel-server`
+
+5. Generate your vagrant instance:
+`vagrant up`
 
 Tech Stack
 ---
