@@ -3,6 +3,17 @@ Ansilog
 Monitor, management and maintain a history for a centralized Ansible playbook
 executions.
 
+Getting started
+---
+Clone project to your workstation:
+```git@github.com:sortex/ansilog.git```
+Update submodules:
+```git submodule update --init --recursive```
+Install Vagrant:
+```sudo apt-get install vagrant```
+Install NFS:
+```sudo apt-get install nfs-kernel-server```
+
 Tech Stack
 ---
 
