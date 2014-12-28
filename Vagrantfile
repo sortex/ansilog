@@ -9,9 +9,8 @@ Vagrant.configure("2") do |config|
 	#config.vm.box = "arch"
 	#config.vm.box_url = "https://www.dropbox.com/s/86vfxbito9avg3m/packer_arch_virtualbox.box"
 
-	# Ubuntu or Debian:
+	# Ubuntu or Debian (alias for boxes on Atlas)
 	config.vm.box = "ubuntu/trusty64"
-	config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
 
 	config.vm.network :forwarded_port, guest: 80, host: 8080
 	config.vm.network :private_network, ip: "33.33.33.10"

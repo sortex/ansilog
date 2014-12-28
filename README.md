@@ -3,23 +3,6 @@ Ansilog
 Monitor, management and maintain a history for a centralized Ansible playbook
 executions.
 
-Getting started
----
-1. Clone project to your workstation and get into it:
-`git clone git@github.com:sortex/ansilog.git && cd ansilog`
-
-2. Update submodules:
-`git submodule update --init --recursive`
-
-3. Install Vagrant:
-`sudo apt-get install vagrant`
-
-4. Install NFS:
-`sudo apt-get install nfs-kernel-server`
-
-5. Generate your vagrant instance:
-`vagrant up`
-
 Tech Stack
 ---
 
@@ -40,9 +23,6 @@ Name             | Description             | Configuration
 [Ansible]        | Automate IT             | [Playbooks](boot/playbooks/)
 [Vagrant]        | Build dev environments  | [Vagrantfile](boot/Vagrantfile)
 [VirtualBox]     | Virtual-machine backend | Used by Vagrant
-
-Drafts
----
 
 ## Architecture
 ### Kohana-based Extensions
@@ -84,8 +64,17 @@ Formation on loading performs a deep-merge of following files in-order:
 - `assets`, [srv/assets](srv/assets)
 - `spec`, [srv/spec](srv/spec) :question:
 
-IT Orchestration
+Setup & Install
 ---
+
+## Getting started
+1. Clone project to your workstation and get into it:
+  `git clone git@github.com:sortex/ansilog.git && cd ansilog`
+2. Update submodules: `git submodule update --init`
+3. [Install Ansible](http://docs.ansible.com/intro_installation.html#latest-releases-via-apt-ubuntu)
+3. Install Vagrant and NFS, e.g. Ubuntu:
+  `sudo apt-get install vagrant nfs-kernel-server`
+5. Create your vagrant instance: `vagrant up`
 
 ## Automated Install
 First, [install](http://docs.ansible.com/intro_installation.html) Ansible on
@@ -143,6 +132,7 @@ License
 [NPM]: https://www.npmjs.org/
 [Bower]: http://bower.io/
 [Grunt]: http://gruntjs.com/
+[Git Submodules]: http://git-scm.com/book/en/Git-Tools-Submodules
 [RequireJS]: http://requirejs.org/
 [Backbone.js]: http://backbonejs.org/
 [Marionette.js]: http://marionettejs.com/
