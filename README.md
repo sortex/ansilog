@@ -27,44 +27,27 @@ Name             | Description             | Configuration
 Setup & Install
 ---
 
-## Getting started
-1. Clone project to your workstation and get into it:
+## Getting Started
+1. Clone project:
   `git clone git@github.com:sortex/ansilog.git && cd ansilog`
-2. Update submodules: `git submodule update --init`
+2. Update git submodules: `git submodule update --init`
 3. [Install Ansible](http://docs.ansible.com/intro_installation.html#latest-releases-via-apt-ubuntu)
-3. Install Vagrant and NFS, e.g. Ubuntu:
-  `sudo apt-get install vagrant nfs-kernel-server`
-5. Create your vagrant instance: `vagrant up`
-
-## Automated Install
-First, [install](http://docs.ansible.com/intro_installation.html) Ansible on
-your central machine (usually local computer). This is the machine you'll use to
-run the playbooks on remote servers.
 
 ### Provision Workstation
-Use [Vagrant] and [Ansible] to create a virtual-machine with
-all dependencies and software installed:
-
-	vagrant up
+- Install Vagrant and NFS (Ubuntu): `apt-get install vagrant nfs-kernel-server`
+- Create your vagrant instance: `vagrant up`
 
 ### Provision Server
 ### Deployment
 
 ## Manual Install
-### Virtual Hosts
-### Prerequisites
-- nginx or Apache
-- PHP 5.5.x
-- Node.js
-- Composer, NPM, grunt, bower
-- Git
+If you choose not to use Vagrant and want to manually prepare your workstation,
+first install the required package managers:
+- Node.js, [NPM]
+- [Composer]
+- [Bower] and [Grunt]: `npm install -g bower grunt-cli`
 
-#### Package Managers
-Install package managers:
-- Composer: `curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer`
-- Bower and Grunt: `npm install -g bower grunt-cli`
-
-### Setup
+Then run:
 ```sh
 npm install
 composer install
@@ -72,7 +55,8 @@ bower install
 grunt
 ```
 
-#### Cron jobs
+### Virtual Hosts
+### Cron jobs
 
 Upgrade
 ---
