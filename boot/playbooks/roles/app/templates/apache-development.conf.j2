@@ -1,0 +1,42 @@
+<VirtualHost *:80>
+
+	ServerAdmin webmaster@localhost
+	ServerName ansilog.vm
+	DocumentRoot /vagrant/srv/http
+
+	RewriteEngine on
+
+	# Protect application and system files from being viewed
+	RewriteRule ^(?:app|bin|boot|etc|src|var|vendor)\b.* /vagrant/srv/http/index.php/$0 [L]
+
+	# Short-circuit for 'common' subpath
+	RewriteRule ^/common/(.*)$ /vagrant/srv/assets/common/$1 [L]
+
+	# Unless file/folder exists, execute index.php
+	RewriteCond /vagrant/srv/http/%{REQUEST_FILENAME} !-f
+	RewriteCond /vagrant/srv/http/%{REQUEST_FILENAME} !-d
+	RewriteRule .* /vagrant/srv/http/index.php [L]
+
+	# Allow any files or directories that exist to be displayed directly
+	RewriteRule .* /vagrant/srv/http/$0
+
+	# Protect hidden files from being viewed
+	<Files .*>
+		Order Deny,Allow
+		Deny From All
+	</Files>
+
+	<Directory /vagrant/>
+		Options -Indexes +FollowSymLinks -MultiViews
+		AllowOverride All
+		Require all granted
+	</Directory>
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel error
+
+	ErrorLog ${APACHE_LOG_DIR}/ansilog_error.log
+	CustomLog ${APACHE_LOG_DIR}/ansilog_access.log combined
+
+</VirtualHost>

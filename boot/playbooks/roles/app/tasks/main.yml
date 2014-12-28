@@ -1,0 +1,67 @@
+---
+
+- name: skel | Copy skel to user's home
+  sudo: no
+  command: rsync -rl --no-owner --no-group /etc/skel/ .
+  args:
+    chdir: ~
+  tags: skel
+
+- name: PHP | Ensure 5.6 custom repository
+  apt_repository: repo='ppa:ondrej/php5-5.6'
+  notify: upgrade php
+  tags: php
+
+- name: Apache | Ensure apps custom vhost
+  template: src=apache-{{ env.KOHANA_ENV }}.conf.j2
+            dest=/etc/apache2/sites-available/99-ansilog.conf
+  notify: restart apache
+  tags:
+    - config
+    - apache
+
+- name: Apache | Symlink custom vhost
+  file: src=/etc/apache2/sites-available/99-ansilog.conf
+        dest=/etc/apache2/sites-enabled/99-ansilog.conf
+        owner=root group=root state=link
+  notify: restart apache
+  tags:
+    - config
+    - apache
+
+- name: NodeJS | Ensuring node.js
+  apt: name={{ item }} state=installed
+  with_items:
+    - nodejs
+    - npm
+  tags:
+    - nodejs
+    - packages
+
+- name: NodeJS | Ensure /usr/bin/node
+  command: ln -s nodejs node
+  args:
+    chdir: /usr/bin
+    creates: /usr/bin/node
+  tags:
+    - npm
+    - packages
+
+- name: NPM | Ensuring global grunt-cli and bower (npm)
+  npm: name={{ item }} global=yes
+  with_items:
+    - grunt-cli
+    - bower
+  tags:
+    - npm
+    - packages
+
+- name: Composer | Ensuring global composer
+  sudo: no
+  shell: curl -sS https://getcomposer.org/installer | /usr/bin/php
+         creates=/usr/local/bin/composer
+  notify: move composer to local bin
+  tags: php
+
+- name: Handlers | Flush handlers before deploy
+  meta: flush_handlers

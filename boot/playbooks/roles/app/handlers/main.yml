@@ -1,0 +1,10 @@
+---
+
+- name: move composer to local bin
+  command: mv -f composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer
+  tags: php
+
+- name: upgrade php
+  apt: name=php5 state=latest update_cache=yes
+  notify: restart apache

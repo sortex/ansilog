@@ -13,12 +13,7 @@
   roles:
     - web/apache-debian
     - web/php-debian
-
-#- name: Provision | Application
-#  hosts: webservers
-#  sudo: yes
-#  roles:
-#    - app
+    - app
 #    - deploy/clean
 #    - deploy/update
 #    - deploy/build

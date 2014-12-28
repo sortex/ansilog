@@ -13,11 +13,6 @@
   roles:
     - web/apache-archlinux
     - web/php-archlinux
-
-# - name: Provision | Application
-#   hosts: webservers
-#   sudo: yes
-#   roles:
-#     - app
+    - app
 #     - deploy/clean
 #     - deploy/update

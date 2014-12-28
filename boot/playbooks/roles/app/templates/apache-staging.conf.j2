@@ -1,0 +1,94 @@
+<VirtualHost *:80>
+
+	ServerAdmin webmaster@localhost
+	ServerName ansilog.sortex.co.il
+	DocumentRoot /srv/http/ansilog
+	SetEnv KOHANA_ENV staging
+
+	RewriteEngine on
+
+	# Protect application and system files from being viewed
+	RewriteRule ^(?:app|bin|boot|etc|src|var|vendor)\b.* /srv/http/ansilog/srv/http/index.php/$0 [L]
+
+	# Short-circuit for 'common' subpath
+	RewriteRule ^/common/(.*)$ /srv/http/ansilog/srv/assets/common/$1 [L]
+
+	# Unless file/folder exists, execute index.php
+	RewriteCond /srv/http/ansilog/srv/http/%{REQUEST_FILENAME} !-f
+	RewriteCond /srv/http/ansilog/srv/http/%{REQUEST_FILENAME} !-d
+	RewriteRule .* /srv/http/ansilog/srv/http/index.php [L]
+
+	# Allow any files or directories that exist to be displayed directly
+	RewriteRule .* /srv/http/ansilog/srv/http/$0
+
+	# Protect hidden files from being viewed
+	<Files .*>
+		Order Deny,Allow
+		Deny From All
+	</Files>
+
+	<Directory /srv/http/ansilog/>
+		Options -Indexes +FollowSymLinks -MultiViews
+		AllowOverride All
+		Require all granted
+	</Directory>
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel error
+
+	ErrorLog ${APACHE_LOG_DIR}/ansilog_error.log
+	CustomLog ${APACHE_LOG_DIR}/ansilog_access.log combined
+
+	ExpiresActive on
+	ExpiresDefault                          "access plus 1 year"
+	ExpiresByType text/cache-manifest       "access plus 0 seconds"
+	ExpiresByType text/html                 "access plus 0 seconds"
+	ExpiresByType text/xml                  "access plus 0 seconds"
+	ExpiresByType application/xml           "access plus 0 seconds"
+	ExpiresByType application/json          "access plus 0 seconds"
+	ExpiresByType application/rss+xml       "access plus 1 hour"
+	ExpiresByType application/atom+xml      "access plus 1 hour"
+
+	# ------------------------------------------------------------------------------
+	# | Compression                                                                |
+	# ------------------------------------------------------------------------------
+
+	<IfModule mod_deflate.c>
+
+		# Force compression for mangled headers.
+		# http://developer.yahoo.com/blogs/ydn/posts/2010/12/pushing-beyond-gzipping
+		<IfModule mod_setenvif.c>
+			<IfModule mod_headers.c>
+				SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+				RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+			</IfModule>
+		</IfModule>
+
+		# Compress all output labeled with one of the following MIME-types
+		# (for Apache versions below 2.3.7, you don't need to enable `mod_filter`
+		#  and can remove the `<IfModule mod_filter.c>` and `</IfModule>` lines
+		#  as `AddOutputFilterByType` is still in the core directives).
+		<IfModule mod_filter.c>
+			AddOutputFilterByType DEFLATE application/atom+xml \
+				application/javascript \
+				application/json \
+				application/rss+xml \
+				application/vnd.ms-fontobject \
+				application/x-font-ttf \
+				application/x-web-app-manifest+json \
+				application/xhtml+xml \
+				application/xml \
+				font/opentype \
+				image/svg+xml \
+				image/x-icon \
+				text/css \
+				text/html \
+				text/plain \
+				text/x-component \
+				text/xml
+		</IfModule>
+
+	</IfModule>
+
+</VirtualHost>
