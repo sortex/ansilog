@@ -1,0 +1,58 @@
+---
+
+# -----------------------------------------------
+# GIT SUBMODULES
+
+- name: Submodules | Syncing
+  command: chdir={{work_dir}} git --git-dir={{repo_dir}} submodule sync
+  sudo: no
+  tags:
+    - update
+    - git
+
+- name: Submodules | Updating
+  command: chdir={{work_dir}} git --git-dir={{repo_dir}} submodule update -f --init --recursive
+  sudo: no
+  when: "'vagrants' not in group_names"
+  tags:
+    - update
+    - git
+
+# -----------------------------------------------
+# NPM install
+
+- name: Staging | NPM install
+  npm: path={{ work_dir }}
+  sudo: no
+  when: "'production' not in group_names"
+  tags:
+    - update
+    - npm
+
+# -----------------------------------------------
+# grunt build:
+# composer install, bower install, grunt copy/concat/clean,
+# compile css, requirejs optimize, uglify js
+
+- name: Staging | Grunt build
+  command: chdir={{ work_dir }} grunt build:{{ env.KOHANA_ENV }}
+  sudo: no
+  environment: env
+  when: "'production' not in group_names"
+  tags:
+    - js
+    - css
+    - update
+    - grunt
+
+- name: Setting recursively ownership on cache/build
+  sudo_user: root
+  when: "'staging' in group_names"
+  shell: chown -R www-data:www-data {{work_dir}}/var/cache/build
+
+# -----------------------------------------------
+# UN-BLOCK SITES
+
+- name: Un-block | Wake-up sites (remove maintenance sign)
+  file: state=absent path={{ work_dir }}/srv/http/upgrading.php
+  tags: block

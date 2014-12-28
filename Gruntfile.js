@@ -33,13 +33,12 @@ module.exports = function(grunt) {
 	});
 
 	/**
-	 * UPGRADE
-	 * The task to upgrade npm/composer/browser packages
+	 * INSTALL
+	 * The task to install composer and browser packages
 	 */
-	grunt.registerTask('upgrade', 'Upgrades project\'s dependencies', function () {
+	grunt.registerTask('install', 'Install project\'s dependencies', function () {
 		var cmds = [
-			'npm update',
-			'composer update',
+			'composer install',
 			'bower update'
 		];
 
@@ -58,16 +57,17 @@ module.exports = function(grunt) {
 	 * composer install, requirejs optimize, uglify admin js,
 	 * compile admin css, uglify theme js
 	 */
-	grunt.registerTask('build', 'Prepares a new deployed build', function() {
-		if (shell.exec('composer install').code !== 0)
-			fatal('Error while running: composer install');
+	grunt.registerTask('build', 'Prepares a new deployed build', function(environment) {
+		environment = environment || 'development';
 
 		grunt.task.run([
-			'requirejs',
-			'uglify:admin',
-			'less_admin',
-			'uglify:themes',
-			'copy:uglified_themes'
+			'install',
+			'less:'+environment
+//			'requirejs',
+//			'uglify:admin',
+//			'less_admin',
+//			'uglify:themes',
+//			'copy:uglified_themes'
 		]);
 	});
 
@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 	 * LESS: Compile sites' stylesheets
 	 * Copies an App's compiled CSS into:
 	 *  - Development: srv/http/media/dev/css
-	 *  - Others: app/media/media/css
+	 *  - Others: app/media/css
 	 */
 	grunt.registerTask('less', 'Compiles LESS styles', function(environment) {
 		environment = environment || 'development';
@@ -328,53 +328,53 @@ module.exports = function(grunt) {
 			},
 			update: {
 				files: [
-					{ cwd: 'lib/bower_modules/media/vendor/backbone.babysitter/lib/',
+					{ cwd: 'app/media/vendor/backbone.babysitter/lib/',
 						src: [ 'backbone.babysitter.js' ],
-						dest: 'lib/bower_modules/media/vendor/backbone.babysitter/',
+						dest: 'app/media/vendor/backbone.babysitter/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/marionette/lib/',
+					{ cwd: 'app/media/vendor/marionette/lib/',
 						src: [ 'backbone.marionette.js' ],
-						dest: 'lib/bower_modules/media/vendor/marionette/',
+						dest: 'app/media/vendor/marionette/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/marionette.backbone.syphon/lib/',
+					{ cwd: 'app/media/vendor/marionette.backbone.syphon/lib/',
 						src: [ 'backbone.syphon.js' ],
-						dest: 'lib/bower_modules/media/vendor/marionette.backbone.syphon/',
+						dest: 'app/media/vendor/marionette.backbone.syphon/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/backbone.wreqr/lib/',
+					{ cwd: 'app/media/vendor/backbone.wreqr/lib/',
 						src: [ 'backbone.wreqr.js' ],
-						dest: 'lib/bower_modules/media/vendor/backbone.wreqr/',
+						dest: 'app/media/vendor/backbone.wreqr/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/bootstrap/js/',
+					{ cwd: 'app/media/vendor/bootstrap/js/',
 						src: [ '*.js' ],
-						dest: 'lib/bower_modules/media/vendor/bootstrap/',
+						dest: 'app/media/vendor/bootstrap/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/jquery/dist/',
+					{ cwd: 'app/media/vendor/jquery/dist/',
 						src: [ 'jquery.min.js' ],
-						dest: 'lib/bower_modules/media/vendor/jquery/',
+						dest: 'app/media/vendor/jquery/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/jquery-file-upload/js/',
+					{ cwd: 'app/media/vendor/jquery-file-upload/js/',
 						src: [ '**' ],
-						dest: 'lib/bower_modules/media/vendor/jquery-file-upload/',
+						dest: 'app/media/vendor/jquery-file-upload/',
 						expand: true, filter: 'isFile'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/jquery-pagination/src/',
+					{ cwd: 'app/media/vendor/jquery-pagination/src/',
 						src: [ 'jquery.pagination.js' ],
-						dest: 'lib/bower_modules/media/vendor/jquery-pagination/',
+						dest: 'app/media/vendor/jquery-pagination/',
 						expand: true, filter: 'isFile'
 					},
 					{
-						src: 'lib/bower_modules/media/vendor/speakingurl/lib/index.js',
-						dest: 'lib/bower_modules/media/vendor/speakingurl/speakingurl.js'
+						src: 'app/media/vendor/speakingurl/lib/index.js',
+						dest: 'app/media/vendor/speakingurl/speakingurl.js'
 					},
-					{ cwd: 'lib/bower_modules/media/vendor/less.js/dist/',
+					{ cwd: 'app/media/vendor/less.js/dist/',
 						src: [ 'less-1.7.5.min.js' ],
-						dest: 'lib/bower_modules/media/vendor/less.js/',
+						dest: 'app/media/vendor/less.js/',
 						expand: true, filter: 'isFile'
 					}
 				]
@@ -399,8 +399,8 @@ module.exports = function(grunt) {
 						return src.replace(/\/\*!\*\/.+\/\*!\*\//g, '');
 					}
 				},
-				src: 'lib/bower_modules/media/vendor/jquery-chosen/chosen.jquery.js',
-				dest: 'lib/bower_modules/media/vendor/jquery-chosen/chosen.jquery.js'
+				src: 'app/media/vendor/jquery-chosen/chosen.jquery.js',
+				dest: 'app/media/vendor/jquery-chosen/chosen.jquery.js'
 			}
 		],
 
@@ -414,62 +414,62 @@ module.exports = function(grunt) {
 		*/
 		clean: [
 			// General garbage
-			'lib/bower_modules/media/vendor/**/.editorconfig',
-			'lib/bower_modules/media/vendor/**/.npmignore',
-			'lib/bower_modules/media/vendor/**/.eslintrc',
-			'lib/bower_modules/media/vendor/**/.mailmap',
-			'lib/bower_modules/media/vendor/**/.rvmrc',
-			'lib/bower_modules/media/vendor/**/.travis.yml',
-			'lib/bower_modules/media/vendor/**/.DS_Store',
-			'lib/bower_modules/media/vendor/**/.git*',
-			'lib/bower_modules/media/vendor/**/.js*',
-			'lib/bower_modules/media/vendor/**/*.md',
-			'lib/bower_modules/media/vendor/**/*.nuspec',
-			'lib/bower_modules/media/vendor/**/bower.json',
-			'lib/bower_modules/media/vendor/**/package.json',
-			'lib/bower_modules/media/vendor/**/Gruntfile.js',
+			'app/media/vendor/**/.editorconfig',
+			'app/media/vendor/**/.npmignore',
+			'app/media/vendor/**/.eslintrc',
+			'app/media/vendor/**/.mailmap',
+			'app/media/vendor/**/.rvmrc',
+			'app/media/vendor/**/.travis.yml',
+			'app/media/vendor/**/.DS_Store',
+			'app/media/vendor/**/.git*',
+			'app/media/vendor/**/.js*',
+			'app/media/vendor/**/*.md',
+			'app/media/vendor/**/*.nuspec',
+			'app/media/vendor/**/bower.json',
+			'app/media/vendor/**/package.json',
+			'app/media/vendor/**/Gruntfile.js',
 
 			// Cleaning misc
-			'lib/bower_modules/media/vendor/backbone/!(backbone.js)*',
-			'lib/bower_modules/media/vendor/backbone.babysitter/!(backbone.babysitter.js)*',
-			'lib/bower_modules/media/vendor/marionette/!(backbone.marionette.js)*',
-			'lib/bower_modules/media/vendor/marionette.backbone.syphon/!(backbone.syphon.js)*',
-			'lib/bower_modules/media/vendor/backbone.wreqr/!(backbone.wreqr.js)*',
-			'lib/bower_modules/media/vendor/jquery-file-upload/!(*.js)*',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-angular.js',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-audio.js',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-image.js',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-jquery-ui.js',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-ui.js',
-			'lib/bower_modules/media/vendor/jquery-file-upload/jquery.fileupload-video.js',
-			'lib/bower_modules/media/vendor/blueimp-canvas-to-blob/js/canvas-to-blob.min.js',
-			'lib/bower_modules/media/vendor/blueimp-load-image/js/load-image.all.min.js',
-			'lib/bower_modules/media/vendor/blueimp-tmpl/js/tmpl.min.js',
-			'lib/bower_modules/media/vendor/bootstrap/!(*.js|less|fonts)*',
-			'lib/bower_modules/media/vendor/fastclick/!(lib)*',
-			'lib/bower_modules/media/vendor/foundation/css',
-			'lib/bower_modules/media/vendor/foundation/js/*(*.js|vendor)',
-			'lib/bower_modules/media/vendor/jquery/!(jquery.min.js)*',
-			'lib/bower_modules/media/vendor/jquery-ajaxQueue/!(src)*',
-			'lib/bower_modules/media/vendor/jquery-chosen/!(chosen)*',
-			'lib/bower_modules/media/vendor/jquery-chosen/chosen.proto*.js',
-			'lib/bower_modules/media/vendor/jquery-chosen/*.min.*',
-			'lib/bower_modules/media/vendor/jquery-pagination/!(jquery.pagination.js)*',
-			'lib/bower_modules/media/vendor/jquery-placeholder/!(jquery.placeholder.js)*',
-			'lib/bower_modules/media/vendor/jquery.transit/!(jquery.transit.js)*',
-			'lib/bower_modules/media/vendor/JSON-js/!(json2.js)*',
-			'lib/bower_modules/media/vendor/less.js/!(less-1.7.5.min.js)*',
-			'lib/bower_modules/media/vendor/modernizr/!(modernizr.js)*',
-			'lib/bower_modules/media/vendor/moment/!(moment.js)*',
-			'lib/bower_modules/media/vendor/mustache/!(mustache.js)*',
-			'lib/bower_modules/media/vendor/requirejs/!(require.js)*',
-			'lib/bower_modules/media/vendor/requirejs-plugins/!(src)*',
-			'lib/bower_modules/media/vendor/slickgrid/!(*.js|*.css)*',
-			'lib/bower_modules/media/vendor/speakingurl/!(speakingurl.js)*',
-			'lib/bower_modules/media/vendor/stache/!(stache.js)*',
-			'lib/bower_modules/media/vendor/requirejs-text/!(text.js)*',
-			'lib/bower_modules/media/vendor/toastr/!(toastr.js)*',
-			'lib/bower_modules/media/vendor/underscore/!(underscore.js)*'
+			'app/media/vendor/backbone/!(backbone.js)*',
+			'app/media/vendor/backbone.babysitter/!(backbone.babysitter.js)*',
+			'app/media/vendor/marionette/!(backbone.marionette.js)*',
+			'app/media/vendor/marionette.backbone.syphon/!(backbone.syphon.js)*',
+			'app/media/vendor/backbone.wreqr/!(backbone.wreqr.js)*',
+			'app/media/vendor/jquery-file-upload/!(*.js)*',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-angular.js',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-audio.js',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-image.js',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-jquery-ui.js',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-ui.js',
+			'app/media/vendor/jquery-file-upload/jquery.fileupload-video.js',
+			'app/media/vendor/blueimp-canvas-to-blob/js/canvas-to-blob.min.js',
+			'app/media/vendor/blueimp-load-image/js/load-image.all.min.js',
+			'app/media/vendor/blueimp-tmpl/js/tmpl.min.js',
+			'app/media/vendor/bootstrap/!(*.js|less|fonts)*',
+			'app/media/vendor/fastclick/!(lib)*',
+			'app/media/vendor/foundation/css',
+			'app/media/vendor/foundation/js/*(*.js|vendor)',
+			'app/media/vendor/jquery/!(jquery.min.js)*',
+			'app/media/vendor/jquery-ajaxQueue/!(src)*',
+			'app/media/vendor/jquery-chosen/!(chosen)*',
+			'app/media/vendor/jquery-chosen/chosen.proto*.js',
+			'app/media/vendor/jquery-chosen/*.min.*',
+			'app/media/vendor/jquery-pagination/!(jquery.pagination.js)*',
+			'app/media/vendor/jquery-placeholder/!(jquery.placeholder.js)*',
+			'app/media/vendor/jquery.transit/!(jquery.transit.js)*',
+			'app/media/vendor/JSON-js/!(json2.js)*',
+			'app/media/vendor/less.js/!(less-1.7.5.min.js)*',
+			'app/media/vendor/modernizr/!(modernizr.js)*',
+			'app/media/vendor/moment/!(moment.js)*',
+			'app/media/vendor/mustache/!(mustache.js)*',
+			'app/media/vendor/requirejs/!(require.js)*',
+			'app/media/vendor/requirejs-plugins/!(src)*',
+			'app/media/vendor/slickgrid/!(*.js|*.css)*',
+			'app/media/vendor/speakingurl/!(speakingurl.js)*',
+			'app/media/vendor/stache/!(stache.js)*',
+			'app/media/vendor/requirejs-text/!(text.js)*',
+			'app/media/vendor/toastr/!(toastr.js)*',
+			'app/media/vendor/underscore/!(underscore.js)*'
 		]
 	};}
 

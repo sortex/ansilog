@@ -32,6 +32,7 @@ Setup & Install
   `git clone git@github.com:sortex/ansilog.git && cd ansilog`
 2. Update git submodules: `git submodule update --init`
 3. [Install Ansible](http://docs.ansible.com/intro_installation.html#latest-releases-via-apt-ubuntu)
+4. Add following line to your `/etc/hosts`: `33.33.33.10  ansilog.vm`
 
 ### Provision Workstation
 - Install Vagrant and NFS (Ubuntu): `apt-get install vagrant nfs-kernel-server`

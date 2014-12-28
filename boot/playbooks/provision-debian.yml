@@ -14,6 +14,5 @@
     - web/apache-debian
     - web/php-debian
     - app
-#    - deploy/clean
-#    - deploy/update
-#    - deploy/build
+    - deploy/build
+#     - deploy/clean
