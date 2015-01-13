@@ -1,5 +1,5 @@
 <?php
-namespace Ansilog;
+namespace Ansilog\Core;
 
 use Ansilog\Core\Tool\Profiler;
 use InvalidArgument;

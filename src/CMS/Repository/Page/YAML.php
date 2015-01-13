@@ -1,5 +1,5 @@
 <?php
-namespace Ansilog\CMS\Repository\Page;
+namespace Sortex\CMS\Repository\Page;
 
 use Symfony\Component\Yaml\Yaml as Yaml_Engine;
 

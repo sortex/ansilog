@@ -42,11 +42,9 @@ register_shutdown_function(array('Kohana', 'shutdown_handler'));
 
 Kohana::modules([
 	'app'     => APPPATH,
-	'ansilog' => DOCROOT.'src/Ansilog',         // Ansilog platform
-	'theme'   => DOCROOT.'src/Themes/_default',
-	'kohana'  => DOCROOT.'src/Kohana',          // Kohana extensions
-	'minion'  => MODPATH.'minion',              // Kohana extensions
-	'ko-core' => MODPATH.'core',                // Kohana/core
+	'kohana'  => DOCROOT.'src/Kohana', // Sortex's Kohana extensions
+	'minion'  => MODPATH.'minion',     // Kohana minion module
+	'ko-core' => MODPATH.'core',       // Kohana's core
 ]);
 Kohana::init_modules();
 
@@ -89,7 +87,7 @@ unset($type, $class, $level, $opts);
 $app_config = Kohana::$config->load('app');
 
 // Configure app and provide Kohana classes' configuration
-$app = new Ansilog\App($app_config);
+$app = new Ansilog\Core\App($app_config);
 
 Session::$default   = $app_config->session;
 Cookie::$salt       = $app_config->salt;

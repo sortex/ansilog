@@ -4,7 +4,7 @@ class Controller_Site_Page extends Controller_Site {
 
 	public function action_index(
 		Ansilog\Core\Usecase\Page\Read $usecase,
-		Ansilog\CMS\View\Site\Page $view
+		Sortex\CMS\View\Site\Page $view
 	)
 	{
 		$slug = $this->request->param('slug');

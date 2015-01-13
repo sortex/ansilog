@@ -1,6 +1,11 @@
 formatter.name: pretty
 suites:
-  ansilog:
-    namespace: Ansilog
-    src_path:  src/Ansilog/classes
+  core:
+    namespace: Ansilog\Core
+    src_path:  src/Core
+    spec_path: srv
+
+  cms:
+    namespace: Sortex\CMS
+    src_path:  src/CMS
     spec_path: srv

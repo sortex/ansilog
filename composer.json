@@ -36,7 +36,9 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Ansilog\\": "src/Ansilog/classes/"
+			"Ansilog\\Core\\": "src/Core",
+			"Sortex\\CMS\\": "src/CMS",
+			"Tool\\": "src/Tool"
 		},
 		"psr-0": {
 			"": [

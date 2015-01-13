@@ -2,7 +2,7 @@
 namespace Ansilog\Core\Usecase\Page;
 
 use Ansilog\Core\Data;
-use Ansilog\CMS\Repository;
+use Sortex\CMS\Repository;
 
 class Read {
 

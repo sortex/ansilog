@@ -1,6 +1,6 @@
 <?php
 
-namespace Ansilog\Tool\Profiler;
+namespace Tool\Profiler;
 
 use Ansilog\Core;
 use Profiler;

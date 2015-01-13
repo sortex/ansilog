@@ -1,5 +1,5 @@
 <?php
-namespace spec\Ansilog;
+namespace spec\Ansilog\Core;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -20,7 +20,7 @@ class AppSpec extends ObjectBehavior
 
 	function it_is_initializable()
 	{
-		$this->shouldHaveType('Ansilog\App');
+		$this->shouldHaveType('Ansilog\Core\App');
 		$this->shouldBeAnInstanceOf('Pimple\Container');
 	}
 

@@ -1,5 +1,5 @@
 <?php
-namespace Ansilog\CMS\View\Site;
+namespace Sortex\CMS\View\Site;
 
 use Arr;
 
