@@ -1,15 +1,16 @@
 <?php
 namespace Ansilog\Core\Data;
 
-class Playbook
-{
+class Playbook {
+
 	public $id;
-	public $site;
+	public $project_id;
+
 	public $name;
 	public $title;
-	public $parameters;
-	public $modified_at;
-	public $deleted_at;
-	public $created_at;
-}
+	public $file_path;
+	public $roles;
+	public $tasks;
+	public $tags;
 
+}

@@ -1,8 +1,8 @@
 <?php
 namespace Ansilog\Core\Data;
 
-class Page
-{
+class Page {
+
 	public $id;
 	public $grid;
 	public $parent;
@@ -15,4 +15,5 @@ class Page
 	public $modified_at;
 	public $deleted_at;
 	public $created_at;
+
 }

@@ -4,7 +4,7 @@ namespace Ansilog\Core\Usecase\Page;
 use Ansilog\Core\Data;
 use Ansilog\CMS\Repository;
 
-class View {
+class Read {
 
 	private $page;
 	private $user;
