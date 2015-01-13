@@ -2,13 +2,10 @@
 
 	ServerAdmin webmaster@localhost
 	ServerName ansilog.sortex.co.il
-	DocumentRoot /srv/http/ansilog
+	DocumentRoot /srv/http/ansilog/srv/http
 	SetEnv KOHANA_ENV staging
 
 	RewriteEngine on
-
-	# Protect application and system files from being viewed
-	RewriteRule ^(?:app|bin|boot|etc|src|var|vendor)\b.* /srv/http/ansilog/srv/http/index.php/$0 [L]
 
 	# Short-circuit for 'common' subpath
 	RewriteRule ^/common/(.*)$ /srv/http/ansilog/srv/assets/common/$1 [L]
@@ -33,12 +30,11 @@
 		Require all granted
 	</Directory>
 
-	# Possible values include: debug, info, notice, warn, error, crit,
-	# alert, emerg.
+	# Levels: debug, info, notice, warn, error, crit, alert, emerg
 	LogLevel error
 
-	ErrorLog ${APACHE_LOG_DIR}/ansilog_error.log
-	CustomLog ${APACHE_LOG_DIR}/ansilog_access.log combined
+	ErrorLog /var/log/httpd/ansilog_error.log
+	CustomLog /var/log/httpd/ansilog_access.log combined
 
 	ExpiresActive on
 	ExpiresDefault                          "access plus 1 year"
@@ -50,10 +46,7 @@
 	ExpiresByType application/rss+xml       "access plus 1 hour"
 	ExpiresByType application/atom+xml      "access plus 1 hour"
 
-	# ------------------------------------------------------------------------------
-	# | Compression                                                                |
-	# ------------------------------------------------------------------------------
-
+	# Compression                                                                |
 	<IfModule mod_deflate.c>
 
 		# Force compression for mangled headers.

@@ -32,11 +32,11 @@ Setup & Install
   `git clone git@github.com:sortex/ansilog.git && cd ansilog`
 2. Update git submodules: `git submodule update --init`
 3. [Install Ansible](http://docs.ansible.com/intro_installation.html#latest-releases-via-apt-ubuntu)
-4. Add following line to your `/etc/hosts`: `33.33.33.10  ansilog.vm`
 
 ### Provision Workstation
-- Install Vagrant and NFS (Ubuntu): `apt-get install vagrant nfs-kernel-server`
-- Create your vagrant instance: `vagrant up`
+1. Install Vagrant and NFS (Ubuntu): `apt-get install vagrant nfs-kernel-server`
+2. Create your vagrant instance: `vagrant up`
+3. Add following line to your `/etc/hosts`: `33.33.33.10  ansilog.vm`
 
 ### Provision Server
 ### Deployment
@@ -57,6 +57,48 @@ grunt
 ```
 
 ### Virtual Hosts
+Apache development vhost conf example:
+```
+<VirtualHost *:80>
+
+	ServerAdmin webmaster@localhost
+	ServerName ansilog.vm
+	DocumentRoot /srv/http/ansilog/srv/http
+
+	RewriteEngine on
+
+	# Short-circuit for 'common' subpath
+	RewriteRule ^/common/(.*)$ /srv/http/ansilog/srv/assets/common/$1 [L]
+
+	# Unless file/folder exists, execute index.php
+	RewriteCond /srv/http/ansilog/srv/http/%{REQUEST_FILENAME} !-f
+	RewriteCond /srv/http/ansilog/srv/http/%{REQUEST_FILENAME} !-d
+	RewriteRule .* /srv/http/ansilog/srv/http/index.php [L]
+
+	# Allow any files or directories that exist to be displayed directly
+	RewriteRule .* /srv/http/ansilog/srv/http/$0
+
+	# Protect hidden files from being viewed
+	<Files .*>
+		Order Deny,Allow
+		Deny From All
+	</Files>
+
+	<Directory /srv/http/ansilog/>
+		Options -Indexes +FollowSymLinks -MultiViews
+		AllowOverride All
+		Require all granted
+	</Directory>
+
+	# Levels: debug, info, notice, warn, error, crit, alert, emerg
+	LogLevel warn
+
+	ErrorLog /var/log/httpd/ansilog_error.log
+	CustomLog /var/log/httpd/ansilog_access.log combined
+
+</VirtualHost>
+```
+
 ### Cron jobs
 
 Upgrade
