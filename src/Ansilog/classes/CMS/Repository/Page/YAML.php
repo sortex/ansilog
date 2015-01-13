@@ -1,12 +1,11 @@
 <?php
 namespace Ansilog\CMS\Repository\Page;
 
-use Ansilog\Core\Usecase\Page;
 use Symfony\Component\Yaml\Yaml as Yaml_Engine;
 
 use URL, Arr;
 
-class YAML implements Page\View\Repository {
+class YAML {
 
 	public function read_page_details($slug, $path = NULL)
 	{

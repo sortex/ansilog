@@ -1,44 +1,41 @@
 <?php
 namespace Ansilog\Core\Usecase\Page;
 
-use Ansilog\Core\Data\Page;
+use Ansilog\Core\Data;
+use Ansilog\CMS\Repository;
 
-class View
-{
-	private $data;
-	private $repository;
+class View {
 
-	public function set(
-		Page $page,
-		View\Repository $repository
+	private $page;
+	private $user;
+	private $repo;
+	private $slug;
+	private $user_id;
+
+	public function __construct(
+		Data\Page $page,
+		Data\User $user,
+		Repository\Page\YAML $repo
 	)
 	{
-		$this->data = $page;
-		$this->repository = $repository;
+		$this->page = $page;
+		$this->user = $user;
+		$this->repo = $repo;
+	}
+
+	public function set($slug, $user_id)
+	{
+		$this->slug = trim($slug, '/') ?: 'home';
+		$this->user_id = (int) $user_id;
+
 		return $this;
 	}
 
-	public function fetch()
+	public function execute()
 	{
-		return new View\Interactor(
-			$this->get_page(),
-			$this->get_viewer()
-		);
+		$page_data = $this->repo->read_page_details($this->slug);
+
+		return $page_data;
 	}
 
-	private function get_page()
-	{
-		return new View\Page(
-			$this->data,
-			$this->repository
-		);
-	}
-
-	private function get_viewer()
-	{
-		return new View\Viewer(
-			$this->data->viewer,
-			$this->repository
-		);
-	}
 }

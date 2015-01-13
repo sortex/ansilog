@@ -1,8 +1,5 @@
 <?php
-//use Mustache_Engine;
-//use Parsedown;
-
-trait Ability_Mustache {
+trait Template_Render_Mustache {
 
 	/**
 	 * @var  string  $grid  The grid's content string itself
