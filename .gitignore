@@ -6,6 +6,6 @@
 .sass-cache
 /bin/behat
 /bin/raven
-/bin/phpspec
+/bin/phpunit
 /build/
 /app/media/vendor/

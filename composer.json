@@ -32,7 +32,7 @@
 		},
 	"require-dev": {
 		"kohana/userguide": "3.4.*@dev",
-		"phpspec/phpspec": "2.1.*@dev"
+		"phpunit/phpunit": "4.5.*@dev"
 	},
 	"autoload": {
 		"psr-4": {

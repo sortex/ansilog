@@ -148,7 +148,6 @@ Formation on loading performs a deep-merge of following files in-order:
   - Application routes, [app/routes.php](app/routes.php)
 - `cli`, [Minion] tasks, [srv/cli/index.php](srv/cli/index.php)
 - `assets`, [srv/assets](srv/assets)
-- `spec`, [srv/spec](srv/spec)
 
 License
 ---
