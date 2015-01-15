@@ -15,7 +15,7 @@ class Read {
 	public function __construct(
 		Data\Page $page,
 		Data\User $user,
-		Repository\Page\YAML $repo
+		Repository\Page $repo
 	)
 	{
 		$this->page = $page;

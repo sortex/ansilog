@@ -38,6 +38,7 @@
 		"psr-4": {
 			"Ansilog\\Core\\": "src/Core",
 			"Sortex\\CMS\\": "src/CMS",
+			"Sortex\\Storage\\": "src/Storage",
 			"Tool\\": "src/Tool"
 		},
 		"psr-0": {

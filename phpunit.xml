@@ -3,6 +3,18 @@
     <testsuite name="core">
 			<directory>tests/Core</directory>
     </testsuite>
+<!--    <testsuite name="dependency">-->
+<!--			<directory>tests/Dependency</directory>-->
+<!--    </testsuite>-->
+<!--    <testsuite name="event">-->
+<!--			<directory>tests/Event</directory>-->
+<!--    </testsuite>-->
+<!--    <testsuite name="event">-->
+<!--			<directory>tests/Delivery</directory>-->
+<!--    </testsuite>-->
+<!--    <testsuite name="app">-->
+<!--			<directory>tests/App</directory>-->
+<!--    </testsuite>-->
   </testsuites>
 
 	<filter>
@@ -17,4 +29,11 @@
 			<directory suffix=".php">./app/classes</directory>
 		</whitelist>
 	</filter>
+
+<!--	<logging>-->
+<!--			<log type="coverage-html" target="./var/cache/coverage" charset="UTF-8"-->
+<!--					yui="true" highlight="true"-->
+<!--					lowUpperBound="50" highLowerBound="80"/>-->
+<!--			<log type="testdox-html" target="./var/cache/coverage.html" />-->
+<!--	</logging>-->
 </phpunit>

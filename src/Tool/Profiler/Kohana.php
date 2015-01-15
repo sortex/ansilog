@@ -1,5 +1,4 @@
 <?php
-
 namespace Tool\Profiler;
 
 use Ansilog\Core;

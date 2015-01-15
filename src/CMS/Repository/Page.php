@@ -1,11 +1,11 @@
 <?php
-namespace Sortex\CMS\Repository\Page;
+namespace Sortex\CMS\Repository;
 
-use Symfony\Component\Yaml\Yaml as Yaml_Engine;
+use Symfony\Component\Yaml\Yaml;
 
 use URL, Arr;
 
-class YAML {
+class Page {
 
 	public function read_page_details($slug, $path = NULL)
 	{
@@ -50,7 +50,7 @@ class YAML {
 				if ($eol - $i === 3 && substr($str, $i, $eol - $i) == '---')
 				{
 					$yaml = substr($str, 0, $i);
-					$args = Yaml_Engine::parse($yaml);
+					$args = Yaml::parse($yaml);
 					$str = substr($str, $i + 4);
 					break;
 				}
