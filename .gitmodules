@@ -3,4 +3,4 @@
 	url = git://github.com/rafi/ansible-base.git
 [submodule "boot/playbooks/roles/web"]
 	path = boot/playbooks/roles/web
-	url = git://github.com/sortex/ansible-web.git
+	url = https://bitbucket.org/sortex/ansible-web.git
